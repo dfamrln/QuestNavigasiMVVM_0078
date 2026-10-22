@@ -7,9 +7,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
 import com.example.pertemuan6.view.FormIsian
 import com.example.pertemuan6.view.TampilData
+
 enum class Navigasi {
     FormulirSaya,
     Detail
@@ -17,7 +17,7 @@ enum class Navigasi {
 
 @Composable
 fun DataApp(
-    navController: NavHostController = rememberNavController()
+    navController: NavHostController
 ) {
     Scaffold { isiRuang ->
         NavHost(
@@ -26,16 +26,18 @@ fun DataApp(
             modifier = Modifier.padding(paddingValues = isiRuang)
         ) {
             composable(route = Navigasi.FormulirSaya.name) {
-                _root_ide_package_.com.example.pertemuan6.view.FormIsian(
-                    //pilihanJK = JenisK.map { id -> konteks.resources.getString(id) },
+                FormIsian(
                     OnSubmitBtnClick = {
                         navController.navigate(route = Navigasi.Detail.name)
                     }
                 )
             }
+
             composable(route = Navigasi.Detail.name) {
-                _root_ide_package_.com.example.pertemuan6.view.TampilData(
-                    onBackBtnClick = { cancelAndBackToFormulirSaya(navController) }
+                TampilData(
+                    onBackBtnClick = {
+                        cancelAndBackToFormulirSaya(navController)
+                    }
                 )
             }
         }
@@ -45,5 +47,8 @@ fun DataApp(
 private fun cancelAndBackToFormulirSaya(
     navController: NavHostController
 ) {
-    navController.popBackStack(route = Navigasi.FormulirSaya.name, inclusive = false)
+    navController.popBackStack(
+        route = Navigasi.FormulirSaya.name,
+        inclusive = false
+    )
 }
