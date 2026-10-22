@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.pertemuan6.R
 
@@ -35,7 +36,7 @@ fun FormIsian(
         modifier = Modifier,
         topBar = {
             TopAppBar(
-                title = { Text(text = "Form Isian", color = Color.White) },
+                title = { Text(text = stringResource(id = R.string.home), color = Color.White) },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = colorResource(id = R.color.teal_700)
                 )
@@ -93,7 +94,7 @@ fun FormIsian(
                                 .padding(all = 25.dp),
                             onClick = OnSubmitBtnCLick
                         ) {
-                            Text(text = "Submit")
+                            Text(stringResource(R.string.submit))
                         }
                     }
                 }
